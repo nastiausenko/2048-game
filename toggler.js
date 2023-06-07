@@ -30,9 +30,10 @@ for (const color of colorTiles) {
     const colorSaturation = color.getAttribute('saturation');
     const colorButton = color.style.background;
 
-    document.querySelector(':root').style.setProperty('--hue', colorHue);
-    document.querySelector(':root').style.setProperty('--saturation', colorSaturation);
-    document.querySelector(':root').style.setProperty('--main-color', colorButton);   
+    const root = document.querySelector(':root');
+    root.style.setProperty('--hue', colorHue);
+    root.style.setProperty('--saturation', colorSaturation);
+    root.style.setProperty('--main-color', colorButton);
   });
 }
 

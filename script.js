@@ -10,7 +10,6 @@ const tryAgainButton = document.getElementById('try-again');
 const newGameButton = document.getElementById('new-game');
 const scoreElement = document.getElementById('score');
 
-
 const grid = new Grid(gameBoard);
 grid.getRandomEmptyCell().linkTile(new Tile(gameBoard));
 grid.getRandomEmptyCell().linkTile(new Tile(gameBoard));
@@ -182,6 +181,13 @@ const displayGameOver = () =>{
    tryAgainButton.addEventListener('click', tryAgain);
 }
 
+const removeTiles = () => {
+  const tiles = document.querySelectorAll('.tile');
+  for (const tile of tiles) {
+    tile.remove();
+  }
+}
+
 const tryAgain = () => {
   removeTiles();
   for (const cell of grid.cells) {
@@ -195,15 +201,7 @@ const tryAgain = () => {
   gameOverWindow.style.display = 'none';
 }
 
-const removeTiles = () => {
-  const tiles = document.querySelectorAll('.tile');
-  for (const tile of tiles) {
-    tile.remove();
-  }
-}
-
 newGameButton.addEventListener('click', tryAgain);
-
 
 const bestScoreElement = document.getElementById('best-score');
 
