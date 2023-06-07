@@ -196,6 +196,7 @@ const tryAgain = () => {
   resetScore();
   isInputActive = true;
   gameOverWindow.style.display = 'none';
+  youWin.style.display = 'none';
 };
 
 newGameButton.addEventListener('click', tryAgain);
