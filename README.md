@@ -4,6 +4,8 @@ You can change the theme of the page and the colors of the tiles to your liking.
 
 ![image_2023-06-07_22-12-52](https://github.com/nastiausenko/2048-game/assets/114734522/dad06c39-73ef-4dab-9370-36172a2d985d)
 
+![image_2023-06-07_22-27-04](https://github.com/nastiausenko/2048-game/assets/114734522/2371309a-40ce-4d35-bf08-0bcc7d5a6e3f)
+
 ![image_2023-06-07_22-14-34](https://github.com/nastiausenko/2048-game/assets/114734522/052cec34-4ad7-471c-ba87-8678a8ca4ff6)
 
 ![image_2023-06-07_22-15-22](https://github.com/nastiausenko/2048-game/assets/114734522/51f5c10c-d982-4fc3-859c-9f7c8dda3bf3)
