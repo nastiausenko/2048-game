@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>2048</title>
+        <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <script src="./script.js" type="module"></script>
+    </head>
+
+    <body>
+        <div id="theme-open" class="fas fa-bars"></div>
+        <div class="themes">
+           <div id="theme-close" class="fas fa-close"></div>
+
+            <h3>Switch theme</h3>
+
+            <div class="theme-toggler">
+                <span>Light</span>
+                <span class="toggler"></span>
+                <span>Dark</span>
+            </div>
+
+            <h3>Pick a color</h3>
+            <div class="theme-colors">
+                <div class="color" hue="0" saturation ="44%" style="background: hsl(0, 44%, 40%);"></div>
+                <div class="color" hue="340" saturation="31%" style="background: hsl(340, 31%, 47%);"></div>
+                <div class="color" hue="32" saturation ="44%" style="background: hsl(32, 44%, 40%);"></div>
+                <div class="color" hue="36" saturation ="70%" style="background: hsl(36, 70%, 40%);"></div>
+                <div class="color" hue="51" saturation ="64%" style="background: hsl(51, 64%, 49%);"></div>
+                <div class="color" hue="78" saturation ="36%" style="background: hsl(78, 36%, 40%);"></div>
+                <div class="color" hue="180" saturation ="44%" style="background: hsl(180, 44%, 40%);"></div>
+                <div class="color" hue="209" saturation ="51%" style="background: hsl(209, 51%, 41%);"></div>
+                <div class="color" hue="240" saturation ="22%" style="background: hsl(240, 22%, 40%);"></div>
+                <div class="color" hue="280" saturation ="30%" style="background: hsl(280, 30%, 40%);"></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div id="game-board"></div>
+            <div id="game-over">
+                <h2>Game over</h2>
+                <button id="try-again">Try again</button>
+            </div>
+        </div>
+
+        <div class="score">
+            <div id="score">Score:</div>
+            <div id="best-score">Best:</div>
+            <button id="new-game">New game</button>
+        </div>
+    </body>
+</html>
