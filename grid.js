@@ -49,11 +49,11 @@ export class Grid{
 
     getMergedValue() {
         let mergedValue = 0;
-        this.cells.forEach(cell => {
-          if (cell.hasMergedTile()) {
-            mergedValue += cell.getMergedTileValue();
+        for (const cell of this.cells) {
+            if (cell.hasMergedTile()) {
+              mergedValue += cell.getMergedTileValue();
+            }
           }
-        });
         return mergedValue;
       }
 }

@@ -24,7 +24,7 @@ document.querySelector('#theme-close').onclick = () => {
 
 const colorTiles = document.querySelectorAll('.color');
 
-colorTiles.forEach((color) => {
+for (const color of colorTiles) {
   color.addEventListener('click', () => {
     const colorHue = color.getAttribute('hue');
     const colorSaturation = color.getAttribute('saturation');
@@ -34,5 +34,5 @@ colorTiles.forEach((color) => {
     document.querySelector(':root').style.setProperty('--saturation', colorSaturation);
     document.querySelector(':root').style.setProperty('--main-color', colorButton);   
   });
-});
+}
 

@@ -96,18 +96,19 @@ const moveRight = async() =>{
 const slideTiles = async(groupedCells) =>{
   const promises = [];
 
-  groupedCells.forEach(group => slideTilesInGroup(group, promises));
+  for (const group of groupedCells) {
+    slideTilesInGroup(group, promises);
+  }
 
   await Promise.all(promises);
 
-  grid.cells.forEach((cell) => {
+  for (const cell of grid.cells) {
     if (cell.hasTileForMerge()) {
       cell.mergeTiles();
-      let mergedValue = cell.getMergedTileValue();
+      const mergedValue = cell.getMergedTileValue();
       calculateScore(mergedValue);
-     }
-  });
-
+    }
+  }
 }
 
 const slideTilesInGroup = (group, promises) =>{
@@ -183,7 +184,9 @@ const displayGameOver = () =>{
 
 const tryAgain = () => {
   removeTiles();
-  grid.cells.forEach(cell => cell.unlinkTile());
+  for (const cell of grid.cells) {
+    cell.unlinkTile();
+  }
   grid.getRandomEmptyCell().linkTile(new Tile(gameBoard));
   grid.getRandomEmptyCell().linkTile(new Tile(gameBoard));
 
@@ -194,7 +197,9 @@ const tryAgain = () => {
 
 const removeTiles = () => {
   const tiles = document.querySelectorAll('.tile');
-  tiles.forEach(tile => tile.remove());
+  for (const tile of tiles) {
+    tile.remove();
+  }
 }
 
 newGameButton.addEventListener('click', tryAgain);
