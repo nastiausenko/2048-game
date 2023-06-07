@@ -36,4 +36,3 @@ for (const color of colorTiles) {
     root.style.setProperty('--main-color', colorButton);
   });
 }
-

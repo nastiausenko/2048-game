@@ -14,26 +14,26 @@ const scoreElement = document.getElementById('score');
 const grid = new Grid(gameBoard);
 grid.getRandomEmptyCell().linkTile(new Tile(gameBoard));
 grid.getRandomEmptyCell().linkTile(new Tile(gameBoard));
-  
+
 let isInputActive = true;
 setupInput();
 
 const inputHandlers = {
   ArrowUp: {
     canMove: () => canMoveUp(),
-    move: async() => moveUp(),
+    move: async () => moveUp(),
   },
   ArrowDown: {
     canMove: () => canMoveDown(),
-    move:async() => moveDown(),
+    move: async () => moveDown(),
   },
   ArrowLeft: {
-    canMove:() => canMoveLeft(),
-    move:async() => moveLeft(),
+    canMove: () => canMoveLeft(),
+    move: async () => moveLeft(),
   },
   ArrowRight: {
-    canMove:() => canMoveRight(),
-    move:async() => moveRight(),
+    canMove: () => canMoveRight(),
+    move: async () => moveRight(),
   },
 };
 
@@ -69,31 +69,27 @@ async function handleInput(event) {
   isInputActive = true;
 }
 
-const moveUp = async() =>{
+const moveUp = async () => {
   await slideTiles(grid.cellsGroupedByColumn);
   isInputActive = true;
+};
 
-}
-
-const moveDown = async() =>{
+const moveDown = async () => {
   await slideTiles(grid.cellsGroupedByReversedColumn);
   isInputActive = true;
+};
 
-}
-
-const moveLeft = async() =>{
+const moveLeft = async () => {
   await slideTiles(grid.cellsGroupedByRow);
   isInputActive = true;
-  
-}
+};
 
-const moveRight = async() =>{
+const moveRight = async () => {
   await slideTiles(grid.cellsGroupedByReversedRow);
   isInputActive = true;
+};
 
-}
-
-const slideTiles = async(groupedCells) =>{
+const slideTiles = async (groupedCells) => {
   const promises = [];
 
   for (const group of groupedCells) {
@@ -106,17 +102,15 @@ const slideTiles = async(groupedCells) =>{
     if (cell.hasTileForMerge()) {
       cell.mergeTiles();
       const mergedValue = cell.getMergedTileValue();
-      if(mergedValue === 2048)
-        displayYouWin();
-      else
-        calculateScore(mergedValue);
+      if (mergedValue === 2048) displayYouWin();
+      else calculateScore(mergedValue);
     }
   }
-}
+};
 
-const slideTilesInGroup = (group, promises) =>{
-  for (let i = 1; i < group.length; i++){
-    if(group[i].isEmpty()){
+const slideTilesInGroup = (group, promises) => {
+  for (let i = 1; i < group.length; i++) {
+    if (group[i].isEmpty()) {
       continue;
     }
 
@@ -124,26 +118,26 @@ const slideTilesInGroup = (group, promises) =>{
 
     let targetCell;
     let j = i - 1;
-    while (j >= 0 && group[j].canAccept(cellWithTile.linkedTile)){
+    while (j >= 0 && group[j].canAccept(cellWithTile.linkedTile)) {
       targetCell = group[j];
       j--;
     }
 
-    if(!targetCell){
+    if (!targetCell) {
       continue;
     }
 
     promises.push(cellWithTile.linkedTile.waitForTransitionEnd());
 
-    if(targetCell.isEmpty()){
+    if (targetCell.isEmpty()) {
       targetCell.linkTile(cellWithTile.linkedTile);
-    }else{
+    } else {
       targetCell.linkTileForMerge(cellWithTile.linkedTile);
     }
 
     cellWithTile.unlinkTile();
   }
-}
+};
 
 const canMoveUp = () => canMove(grid.cellsGroupedByColumn);
 
@@ -153,48 +147,43 @@ const canMoveLeft = () => canMove(grid.cellsGroupedByRow);
 
 const canMoveRight = () => canMove(grid.cellsGroupedByReversedRow);
 
+const canMoveDirection = () => {
+  return canMoveLeft() || canMoveRight() || canMoveDown() || canMoveUp();
+};
 
-const canMoveDirection = () =>{
-    return (
-      canMoveLeft()||
-      canMoveRight() ||
-      canMoveDown() ||
-      canMoveUp()
-    );
-  }
-
-const canMove = (groupedCells) => groupedCells.some(group => canMoveInGroup(group));
+const canMove = (groupedCells) =>
+  groupedCells.some((group) => canMoveInGroup(group));
 
 const canMoveInGroup = (group) => {
   return group.some((cell, index) => {
-    if(index === 0){
+    if (index === 0) {
       return false;
     }
 
-    if(cell.isEmpty()){
+    if (cell.isEmpty()) {
       return false;
     }
 
-    const targetCell = group[index -1];
+    const targetCell = group[index - 1];
     return targetCell.canAccept(cell.linkedTile);
   });
-}
+};
 
 const displayGameOver = () => {
-   gameOverWindow.style.display = "block";
-   tryAgainButton.addEventListener('click', tryAgain);
-}
+  gameOverWindow.style.display = 'block';
+  tryAgainButton.addEventListener('click', tryAgain);
+};
 
 const displayYouWin = () => {
-    youWin.style.display = "block";
-}
+  youWin.style.display = 'block';
+};
 
 const removeTiles = () => {
   const tiles = document.querySelectorAll('.tile');
   for (const tile of tiles) {
     tile.remove();
   }
-}
+};
 
 const tryAgain = () => {
   removeTiles();
@@ -207,7 +196,7 @@ const tryAgain = () => {
   resetScore();
   isInputActive = true;
   gameOverWindow.style.display = 'none';
-}
+};
 
 newGameButton.addEventListener('click', tryAgain);
 
@@ -222,10 +211,10 @@ function calculateScore(value) {
 }
 
 function updateScore() {
-  scoreElement.textContent ='Score: ' + score;
+  scoreElement.textContent = 'Score: ' + score;
   if (score > bestScore) {
     bestScore = score;
-    bestScoreElement.textContent ='Best: ' + bestScore;
+    bestScoreElement.textContent = 'Best: ' + bestScore;
   }
 }
 
@@ -233,18 +222,3 @@ function resetScore() {
   score = 0;
   updateScore();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

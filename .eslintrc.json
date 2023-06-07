@@ -2,11 +2,11 @@
     "env": {
       "browser": true,
       "es6": true,
-      "es2022": true
+      "node": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
-      "ecmaVersion": 2022
+      "ecmaVersion": 2020
     },
     "globals": {
       "BigInt": true
