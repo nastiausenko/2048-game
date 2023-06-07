@@ -200,6 +200,21 @@ body.active{
     padding-top: 33vmin;
 }
 
+#win{
+    position: absolute;
+    width: 90vmin;
+    height: 90vmin;
+    display: none;
+    background-color: var(--game-over-dark);
+    border-radius: 1vmin;
+    animation: appear 2s;
+    
+    color: var(--white);
+    font-size: 7.5vmin;
+    text-align: center;
+    padding-top: 38vmin;
+}
+
 #try-again{
     cursor: pointer;
     width: 20vmin;
@@ -272,5 +287,4 @@ body.active{
     0%{
         opacity: 0;
     }
-   
 }

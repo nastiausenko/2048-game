@@ -6,6 +6,7 @@ import { Tile } from './tile.js';
 
 const gameBoard = document.getElementById('game-board');
 const gameOverWindow = document.getElementById('game-over');
+const youWin = document.getElementById('win');
 const tryAgainButton = document.getElementById('try-again');
 const newGameButton = document.getElementById('new-game');
 const scoreElement = document.getElementById('score');
@@ -105,7 +106,10 @@ const slideTiles = async(groupedCells) =>{
     if (cell.hasTileForMerge()) {
       cell.mergeTiles();
       const mergedValue = cell.getMergedTileValue();
-      calculateScore(mergedValue);
+      if(mergedValue === 2048)
+        displayYouWin();
+      else
+        calculateScore(mergedValue);
     }
   }
 }
@@ -176,9 +180,13 @@ const canMoveInGroup = (group) => {
   });
 }
 
-const displayGameOver = () =>{
+const displayGameOver = () => {
    gameOverWindow.style.display = "block";
    tryAgainButton.addEventListener('click', tryAgain);
+}
+
+const displayYouWin = () => {
+    youWin.style.display = "block";
 }
 
 const removeTiles = () => {
@@ -225,6 +233,7 @@ function resetScore() {
   score = 0;
   updateScore();
 }
+
 
 
 
