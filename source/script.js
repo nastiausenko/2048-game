@@ -56,17 +56,16 @@ async function handleInput(event) {
       return;
     }
     await handler.move();
+
+    const newTile = new Tile(gameBoard);
+    grid.getRandomEmptyCell().linkTile(newTile);
+
+    if (!canMoveDirection()) {
+      await newTile.waitForAnimationEnd();
+      displayGameOver();
+      return;
+    }
   }
-
-  const newTile = new Tile(gameBoard);
-  grid.getRandomEmptyCell().linkTile(newTile);
-
-  if (!canMoveDirection()) {
-    await newTile.waitForAnimationEnd();
-    displayGameOver();
-    return;
-  }
-
   isInputActive = true;
 }
 
