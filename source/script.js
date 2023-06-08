@@ -16,6 +16,7 @@ grid.getRandomEmptyCell().linkTile(new Tile(gameBoard));
 grid.getRandomEmptyCell().linkTile(new Tile(gameBoard));
 
 let isInputActive = true;
+let canMoveTiles = true;
 setupInput();
 
 const inputHandlers = {
@@ -42,7 +43,7 @@ function setupInput() {
 }
 
 async function handleInput(event) {
-  if (!isInputActive) {
+  if (!isInputActive || !canMoveTiles) {
     return;
   }
 
@@ -175,6 +176,7 @@ const displayGameOver = () => {
 };
 
 const displayYouWin = () => {
+  canMoveTiles = false;
   youWin.style.display = 'block';
 };
 
@@ -194,7 +196,7 @@ const tryAgain = () => {
   grid.getRandomEmptyCell().linkTile(new Tile(gameBoard));
 
   resetScore();
-  isInputActive = true;
+  canMoveTiles = true;
   gameOverWindow.style.display = 'none';
   youWin.style.display = 'none';
 };
